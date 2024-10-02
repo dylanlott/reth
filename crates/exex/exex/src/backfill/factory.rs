@@ -1,5 +1,5 @@
 use crate::BackfillJob;
-use std::ops::RangeInclusive;
+use std::{ops::RangeInclusive, time::Duration};
 
 use reth_node_api::FullNodeComponents;
 use reth_primitives::BlockNumber;
@@ -25,7 +25,12 @@ impl<E, P> BackfillJobFactory<E, P> {
             executor,
             provider,
             prune_modes: PruneModes::none(),
-            thresholds: ExecutionStageThresholds::default(),
+            thresholds: ExecutionStageThresholds {
+                max_blocks: Some(400_000),
+                max_changes: Some(4_000_000),
+                max_cumulative_gas: Some(30_000_000 * 40_000),
+                max_duration: Some(Duration::from_secs(8 * 60)),
+            },
             stream_parallelism: DEFAULT_PARALLELISM,
         }
     }
