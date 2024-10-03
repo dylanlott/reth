@@ -26,10 +26,10 @@ impl<E, P> BackfillJobFactory<E, P> {
             provider,
             prune_modes: PruneModes::none(),
             thresholds: ExecutionStageThresholds {
-                max_blocks: Some(400_000),
-                max_changes: Some(4_000_000),
-                max_cumulative_gas: Some(30_000_000 * 40_000),
-                max_duration: Some(Duration::from_secs(8 * 60)),
+                max_blocks: None,
+                max_changes: None,
+                max_cumulative_gas: None,
+                max_duration: None,
             },
             stream_parallelism: DEFAULT_PARALLELISM,
         }
