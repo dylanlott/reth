@@ -18,6 +18,7 @@
 #![cfg_attr(not(feature = "std"), no_std)]
 
 pub use reth_codecs_derive::*;
+use reth_tracing::tracing::warn;
 
 use alloy_primitives::{Address, Bloom, Bytes, FixedBytes, U256};
 use bytes::{Buf, BufMut};
@@ -274,6 +275,8 @@ where
         if len == 0 {
             return (None, buf)
         }
+
+        warn!(t = std::any::type_name::<T>(), buf = alloy_primitives::hex::encode(buf), "Option::compact");
 
         let (len, mut buf) = decode_varuint(buf);
 

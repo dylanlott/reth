@@ -6629,6 +6629,7 @@ dependencies = [
  "proptest-arbitrary-interop",
  "rand 0.8.5",
  "reth-codecs-derive",
+ "reth-tracing",
  "serde",
  "serde_json",
  "test-fuzz",
